@@ -13,14 +13,14 @@ File Encoding         : 65001
 Date: 2018-07-06 15:43:03
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+-- SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
 -- Table structure for tb_menu
 -- ----------------------------
-DROP TABLE IF EXISTS `tb_menu`;
+-- DROP TABLE IF EXISTS `tb_menu`;
 CREATE TABLE `tb_menu` (
-  `menu_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  menu_id int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `parent_id` int(11) NOT NULL COMMENT '父菜单主键',
   `menu_code` varchar(50) NOT NULL COMMENT '菜单代号,规范权限标识',
   `code` varchar(50) DEFAULT NULL COMMENT '代码控制权限标识符',
@@ -35,12 +35,12 @@ CREATE TABLE `tb_menu` (
 -- ----------------------------
 -- Records of tb_menu
 -- ----------------------------
-INSERT INTO `tb_menu` VALUES ('1', '0', 'menu-a8617c317b204969a054fdag233das2l', 'user', '用户管理列表', '1', '1', '', '1.jpg');
-INSERT INTO `tb_menu` VALUES ('2', '0', 'menu-afd83fc912eb44d29012049aae184fd4', 'data', '数据管理列表', '1', '1', '/api/data/manager', null);
-INSERT INTO `tb_menu` VALUES ('3', '0', 'menu-a8617c31654653a054b68a343254565fss', 'system', '系统管理', '1', '1', null, 'anticon-laptop');
-INSERT INTO `tb_menu` VALUES ('101', '1', 'menu-974abc42a78040e7ac74ceecb70c02b5', 'user:list', '用户管理列表', '1', '1', '/api/user/manager', null);
-INSERT INTO `tb_menu` VALUES ('102', '1', 'menu-ad61fb43be7d46e7a81e37593042f543', 'role:list', '角色列表', '1', '2', '', null);
-INSERT INTO `tb_menu` VALUES ('201', '2', 'menu-b16897c1c79b45b099939f5333530eaf', 'data:list1', '数据列表1', '1', '1', '', null);
+INSERT INTO `tb_menu` VALUES('1', '0', 'menu-a8617c317b204969a054fdag233das2l', 'user', '用户管理列表', '1', '1', '', '1.jpg');
+INSERT INTO `tb_menu` VALUES('2', '0', 'menu-afd83fc912eb44d29012049aae184fd4', 'data', '数据管理列表', '1', '1', '/api/data/manager', null);
+INSERT INTO `tb_menu` VALUES('3', '0', 'menu-a8617c31654653a054b68a343254565fss', 'system', '系统管理', '1', '1', null, 'anticon-laptop');
+INSERT INTO `tb_menu` VALUES('101', '1', 'menu-974abc42a78040e7ac74ceecb70c02b5', 'user:list', '用户管理列表', '1', '1', '/api/user/manager', null);
+INSERT INTO `tb_menu` VALUES('102', '1', 'menu-ad61fb43be7d46e7a81e37593042f543', 'role:list', '角色列表', '1', '2', '', null);
+INSERT INTO `tb_menu` VALUES('201', '2', 'menu-b16897c1c79b45b099939f5333530eaf', 'data:list1', '数据列表1', '1', '1', '', null);
 INSERT INTO `tb_menu` VALUES ('202', '2', 'menu-ca569a407de7459f94e8b096180bc5e9', 'data:list2', '数据列表2', '1', '2', '', null);
 INSERT INTO `tb_menu` VALUES ('301', '3', 'menu-a8617c31654653a054fdsg23asdg5423', 'system:info', '网站信息', '1', '1', '/home/system-management/website-information', null);
 INSERT INTO `tb_menu` VALUES ('302', '3', 'menu-a8617c317b204969a054b653df212zg712', 'system:passwd', '密码修改', '1', '1', '/home/system-management/password-modification', null);
@@ -61,7 +61,7 @@ INSERT INTO `tb_menu` VALUES ('2023', '202', 'menu-a8617c317b204969a054b68a3473d
 -- ----------------------------
 -- Table structure for tb_operation_log
 -- ----------------------------
-DROP TABLE IF EXISTS `tb_operation_log`;
+-- DROP TABLE IF EXISTS `tb_operation_log`;
 CREATE TABLE `tb_operation_log` (
   `operation_log_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `log_description` varchar(64) DEFAULT NULL COMMENT '日志描述',
@@ -83,7 +83,7 @@ CREATE TABLE `tb_operation_log` (
 -- ----------------------------
 -- Table structure for tb_role
 -- ----------------------------
-DROP TABLE IF EXISTS `tb_role`;
+-- DROP TABLE IF EXISTS `tb_role`;
 CREATE TABLE `tb_role` (
   `role_code` varchar(50) NOT NULL COMMENT '角色代号主键',
   `role_name` varchar(50) NOT NULL COMMENT '角色名称',
@@ -99,7 +99,7 @@ INSERT INTO `tb_role` VALUES ('role-f7943542d87a4f028f446b71d9ede25d', 'user');
 -- ----------------------------
 -- Table structure for tb_role_to_menu
 -- ----------------------------
-DROP TABLE IF EXISTS `tb_role_to_menu`;
+-- DROP TABLE IF EXISTS `tb_role_to_menu`;
 CREATE TABLE `tb_role_to_menu` (
   `role_to_menu_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `role_code` varchar(50) NOT NULL COMMENT '角色代号',
@@ -140,7 +140,7 @@ INSERT INTO `tb_role_to_menu` VALUES ('27', 'role-cf8fea2055344df59a0d3e80540c78
 -- ----------------------------
 -- Table structure for tb_sms_verify
 -- ----------------------------
-DROP TABLE IF EXISTS `tb_sms_verify`;
+-- DROP TABLE IF EXISTS `tb_sms_verify`;
 CREATE TABLE `tb_sms_verify` (
   `sms_verify_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `sms_id` varchar(64) NOT NULL COMMENT '短信编号（可以自己生成，也可以第三方复返回）',
@@ -163,7 +163,7 @@ INSERT INTO `tb_sms_verify` VALUES ('8', '18062611474923414', '13888888888', '90
 -- ----------------------------
 -- Table structure for tb_user
 -- ----------------------------
-DROP TABLE IF EXISTS `tb_user`;
+-- DROP TABLE IF EXISTS `tb_user`;
 CREATE TABLE `tb_user` (
   `user_no` varchar(50) NOT NULL COMMENT '用户主键',
   `mobile` varchar(11) NOT NULL COMMENT '是电话号码，也是账号（登录用）',
@@ -187,7 +187,7 @@ INSERT INTO `tb_user` VALUES ('user-573388ebd14348cf8b546a6bfdf98ca3', '18792420
 -- ----------------------------
 -- Table structure for tb_user_to_role
 -- ----------------------------
-DROP TABLE IF EXISTS `tb_user_to_role`;
+-- DROP TABLE IF EXISTS `tb_user_to_role`;
 CREATE TABLE `tb_user_to_role` (
   `user_to_role_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `user_no` varchar(50) NOT NULL COMMENT '用户编号',

@@ -44,4 +44,4 @@ databaseChangeLog:
     changes:
     - sqlFile:
         encoding: utf8
-        path: classpath:db/changelog/sqlfile/test1.sql
+#        path: classpath:db/changelog/sqlfile/test1.sql

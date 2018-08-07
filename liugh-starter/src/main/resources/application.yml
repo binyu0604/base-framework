@@ -1,6 +1,6 @@
 
 server:
-  port: 65000
+  port: 8081
   servlet:
     session:
       timeout: 1800
@@ -98,7 +98,8 @@ spring:
 ##    baseline-on-migrate: true
 spring:
   liquibase:
-    change-log: classpath:db/changelog/db.changelog-master.yaml
+    change-log: classpath:db/migration/V1__Base_version.sql
+#    change-log: classpath:db/changelog/db.changelog-master.yaml
 ---
 #redis数据库的索引，默认为0
 spring:
