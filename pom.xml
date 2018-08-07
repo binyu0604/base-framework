@@ -48,13 +48,15 @@
         <gson.version>2.7</gson.version>
         <mysql-connector-java.version>6.0.6</mysql-connector-java.version>
         <scala-bcrypt_2.10.version>2.3</scala-bcrypt_2.10.version>
-        <rest-assured.version>2.9.0</rest-assured.version>
+        <rest-assured.version>2.8.0</rest-assured.version>
         <ant.version>1.9.7</ant.version>
         <springfox-swagger2.version>2.2.2</springfox-swagger2.version>
         <lombok.version> 1.18.2</lombok.version>
         <geojson.version>19.2</geojson.version>
         <pagehelper.version>1.2.5</pagehelper.version>
         <log4j.version>2.10.0</log4j.version>
+        <liquibase.version>3.6.2</liquibase.version>
+        <!--<flyway-maven-plugin.version>5.1.4</flyway-maven-plugin.version>-->
     </properties>
 
     <dependencyManagement>
@@ -225,6 +227,7 @@
                 <groupId>com.jayway.restassured</groupId>
                 <artifactId>rest-assured</artifactId>
                 <version>${rest-assured.version}</version>
+                <scope>test</scope>
             </dependency>
 
 
@@ -247,7 +250,19 @@
                 <artifactId>gt-geojson</artifactId>
                 <version>${geojson.version}</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-maven-plugin -->
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>${liquibase.version}</version>
+            </dependency>
 
+            <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-maven-plugin -->
+            <!--<dependency>-->
+                <!--<groupId>org.flywaydb</groupId>-->
+                <!--<artifactId>flyway-maven-plugin</artifactId>-->
+                <!--<version>${flyway-maven-plugin.version}</version>-->
+            <!--</dependency>-->
         </dependencies>
     </dependencyManagement>
 
@@ -294,7 +309,65 @@
             </snapshots>
         </repository>
     </repositories>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <configuration>
+                    <!--指定数据库连接-->
+                    <!--suppress UnresolvedMavenProperty -->
+                    <!--<propertyFile>${project.basedir}/liugh-starter/src/main/resources/env/${env}/liquibase.properties</propertyFile>-->
+                    <!--指定执行主文件-->
+                    <changeLogFile>${project.basedir}/src/main/resources/db/changelog/db-master_${project.version}-now.yaml</changeLogFile>
+                    <outputChangeLogFile>${project.basedir}/src/main/resources/db/changelog/db-master_${project.version}-now.yaml</outputChangeLogFile>
+                    <!-- 是否需要弹出确认框-->
+                    <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+                    <!--输出文件的编码-->
+                    <outputFileEncoding>UTF-8</outputFileEncoding>
+                    <!--执行的时候是否显示详细的参数信息-->
+                    <verbose>true</verbose>
+                    <!--是否每次都重新加载properties-->
+                    <propertyFileWillOverride>true</propertyFileWillOverride>
+                    <rollbackTag>${project.version}</rollbackTag>
+                    <tag>${project.version}</tag>
+                </configuration>
+            </plugin>
 
+            <!--<plugin>-->
+                <!--<groupId>org.flywaydb</groupId>-->
+                <!--<artifactId>flyway-maven-plugin</artifactId>-->
+                <!--<dependencies>-->
+                    <!--<dependency>-->
+                        <!--<groupId>mysql</groupId>-->
+                        <!--<artifactId>mysql-connector-java</artifactId>-->
+                    <!--</dependency>-->
+                <!--</dependencies>-->
+                <!--<configuration>-->
+                    <!--<driver>com.mysql.jdbc.Driver</driver>-->
+                    <!--<url>jdbc:mysql://localhost/liugh1?useUnicode=true&amp;characterEncoding=utf-8</url>-->
+                    <!--<user>root</user>-->
+                    <!--<password></password>-->
+
+                    <!--&lt;!&ndash; 设置接受flyway进行版本管理的数据库，多个数据库以逗号分隔 &ndash;&gt;-->
+                    <!--<schemas>liugh1</schemas>-->
+                    <!--&lt;!&ndash; 设置存放flyway metadata数据的表名 &ndash;&gt;-->
+                    <!--<table>schema_version</table>-->
+                    <!--&lt;!&ndash; 设置flyway扫描sql升级脚本、java升级脚本的目录路径或包路径 &ndash;&gt;-->
+                    <!--<locations>-->
+                        <!--<location>flyway/migrations</location>-->
+                        <!--<location>com.kedacom.flywaydemo.migrations</location>-->
+                    <!--</locations>-->
+                    <!--&lt;!&ndash; 设置sql脚本文件的编码 &ndash;&gt;-->
+                    <!--<encoding>UTF-8</encoding>-->
+                    <!--&lt;!&ndash; 设置执行migrate操作之前的validation行为 &ndash;&gt;-->
+                    <!--<validationMode>ALL</validationMode>-->
+                    <!--&lt;!&ndash; 设置当validation失败时的系统行为 &ndash;&gt;-->
+                    <!--<validationErrorMode>FAIL</validationErrorMode>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+        </plugins>
+    </build>
     <pluginRepositories>
         <pluginRepository>
             <id>ali-snapshots</id>
