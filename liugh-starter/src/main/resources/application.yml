@@ -1,0 +1,126 @@
+
+server:
+  port: 8081
+  servlet:
+    session:
+      timeout: 1800
+---
+spring:
+  profiles:
+    active: prod
+    mvc:
+      favicon:
+        enabled: false
+      view:
+ #       prefix: /templates/
+        suffix: .ftl
+    aop:
+      auto: true
+  session:
+    store-type: none
+
+---
+com:
+    app:
+      name: 金广通
+      version: 1.0
+      comment: jgt
+---
+#文件上传配置
+multipart:
+    enabled: true
+    maxFileSize: 100Mb
+    maxRequestSize: 100Mb
+#    location: ./upload
+---
+spring:
+  freemarker:
+    request-context-attribute: request
+    expose-request-attributes: true
+  thymeleaf:
+    prefix: classpath:/templates/
+    #    prefix: classpath:/templates/
+    #    suffix: .html
+    #    mode: HTML5
+    #    encoding: UTF-8
+    # ;charset=<encoding> is added
+    #    content-type: text/html
+    # set to false for hot refresh
+    cache: true
+    mode: LEGACYHTML5
+
+---
+#mybatis-plus:
+#  mapper-locations: classpath:/com/liugh/mapper/xml/*Mapper.xml
+#  typeAliasesPackage: com.liugh.entity
+---
+mybatis:
+  mapper-locations: classpath:/com/liugh/mapper/xml/*Mapper.xml
+  type-aliases-package: com.liugh.entity
+  config-location: classpath:config/mybatis-config.xml
+  dynamic-datasource: true   #启用mybatis动态数据源
+#  configuration:
+#    map-underscore-to-camel-case: true
+---
+mapper:
+  mappers:
+    - com.liugh.mapper
+  not-empty: false
+  identity: MYSQL
+---
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+---
+# SPRING PROFILES
+spring:
+    # HTTP ENCODING
+    http:
+        encoding:
+          charset: UTF-8
+          enable: true
+          force: true
+---
+#importdata_category: yes
+#importdata_category_spilt: yes
+
+---
+spring:
+  flyway:
+    locations: classpath:/db
+---
+#redis数据库的索引，默认为0
+spring:
+  redis:
+    database: 0
+    host: 127.0.0.1
+    #spring.redis.password=
+    port: 6379
+    #最大空闲链接数
+    jedis:
+      pool:
+        max-idle: 8
+        min-idle: 0
+        max-active: 8
+        #连接池最大阻塞等待时间，负数表示没有
+        max-wait: -1
+---
+token-random-salt: liugh@123
+controller:
+  scanPackage: com.liugh.controller
+---
+---
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initial-size: 1
+    min-idle: 1
+    max-active: 20
+    test-on-borrow: true
+    logSlowSql: true
+    filters: stat,wall,slf4j
+    min-evictable-idle-time-millis: 30000

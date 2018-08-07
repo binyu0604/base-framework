@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+    <id>bin</id>
+    <formats>
+        <format>dir</format>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <moduleSets>
+        <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
+            <includes>
+                <include>com.liugh:liugh-common</include>
+                <include>com.liugh:liugh-persistence</include>
+                <include>com.liugh:liugh-service</include>
+                <include>com.liugh:liugh-web</include>
+            </includes>
+            <binaries>
+                <outputDirectory>lib</outputDirectory>
+                <unpack>false</unpack>
+            </binaries>
+        </moduleSet>
+    </moduleSets>
+    <fileSets>
+        <fileSet>
+            <directory>src/main/bin</directory>
+            <outputDirectory>bin</outputDirectory>
+            <fileMode>0755</fileMode>
+        </fileSet>
+        <!--多环境配置-->
+        <fileSet>
+            <!--${env} 可以获取打包命令里的参数-->
+            <directory>src/main/resources/env/${env}/</directory>
+            <outputDirectory>env/${env}</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <outputDirectory>config</outputDirectory>
+            <fileMode>0644</fileMode>
+            <includes>
+                <include>application-${env}.yml</include>
+                <include>application.yml</include>
+            </includes>
+            <!-- 去除需要多环境配置的文件-->
+            <excludes>
+                <exclude>application.properties</exclude>
+                <exclude>**/env/**</exclude>
+                <exclude>banner.txt</exclude>
+                <exclude>aplication-**.yml</exclude>
+            </excludes>
+        </fileSet>
+
+
+        <fileSet>
+            <directory>target</directory>
+            <outputDirectory>lib</outputDirectory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <outputDirectory>lib</outputDirectory>
+            <fileMode>0644</fileMode>
+            <includes>
+                <include>banner.txt</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <outputDirectory>logs</outputDirectory>
+            <fileMode>0755</fileMode>
+            <excludes>
+                <exclude>**/*</exclude>
+            </excludes>
+        </fileSet>
+    </fileSets>
+
+
+</assembly>

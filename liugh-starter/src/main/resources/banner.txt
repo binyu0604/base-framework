@@ -1,0 +1,12 @@
+${AnsiColor.RED}         _                      _
+        ╭══╮╭╮╭╮╭╮╭╮╭╮╭╮╭══╮╭╮╭╮╭══╮
+        ║╭═╯║╰╯║║╰╯║║║║║╰╮╭╯║╰╮║║╭═╯
+        ║╰═╮║　╭╯╰╮╭╯║╰╯║　║║　║　　║║║╭╮
+        ╰═╮║║　╰╮　║║　║║║║　║║　║　　║║║║║
+        ╭═╯║║╭╮║　║║　║　　║╭╯╰╮║╰╮║║╰╯║
+        ╰══╯╰╯╰╯　╰╯　╰╰╯╯╰══╯╰╯╰╯╰══╯
+${AnsiColor.YELLOW}--------------------start-----------------------
+${AnsiColor.YELLOW}         :: ${AnsiColor.GREEN} Running: ${AnsiColor.RED}${com.app.name} ${AnsiColor.YELLOW}(${com.app.version})
+${AnsiColor.YELLOW}            ${AnsiColor.GREEN}  环  境: ${AnsiColor.BRIGHT_RED} ${spring.profiles.active}
+${AnsiColor.YELLOW}            ${AnsiColor.GREEN}  端口号: ${AnsiColor.BRIGHT_RED} ${server.port}
+${AnsiColor.YELLOW}------------------------------------------------${AnsiColor.WHITE}.
