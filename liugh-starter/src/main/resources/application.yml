@@ -7,7 +7,7 @@ server:
 ---
 spring:
   profiles:
-    active: prod
+    active: dev
     mvc:
       favicon:
         enabled: false
@@ -53,14 +53,9 @@ spring:
 #mybatis-plus:
 #  mapper-locations: classpath:/com/liugh/mapper/xml/*Mapper.xml
 #  typeAliasesPackage: com.liugh.entity
----
-mybatis:
-  mapper-locations: classpath:/com/liugh/mapper/xml/*Mapper.xml
+mybatis-plus:
   type-aliases-package: com.liugh.entity
-  config-location: classpath:config/mybatis-config.xml
-  dynamic-datasource: true   #启用mybatis动态数据源
-#  configuration:
-#    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml
 ---
 mapper:
   mappers:
