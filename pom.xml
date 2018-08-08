@@ -280,6 +280,7 @@
             <properties>
                 <env>dev</env>
                 <liquibase-dir>${project.basedir}</liquibase-dir>
+                <version>${project.parent.version}</version>
             </properties>
             <!-- 如果不指定ID，默认是本地环境-->
             <activation>
