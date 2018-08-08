@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <artifactId>liugh-parent</artifactId>
+        <groupId>com.liugh</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>liugh-db-manager</artifactId>
+    <packaging>jar</packaging>
+
+    <name>db-manager</name>
+    <description>db manager project for Spring Boot</description>
+
+    <properties>
+        <liquibase-dir>${project.basedir}</liquibase-dir>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- liquibase  -->
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <filtering>true</filtering>
+                <directory>${project.basedir}/../liquibase</directory>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>${liquibase.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql-connector-java.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <!--<includeArtifact>false</includeArtifact>-->
+
+                    <!--suppress UnresolvedMavenProperty -->
+                    <!--指定数据库连接-->
+                    <!--suppress UnresolvedMavenProperty -->
+                    <propertyFile>${project.basedir}/src/main/resources/env/${env}/liquibase.properties</propertyFile>
+                    <!--指定执行主文件-->
+                    <changeLogFile>${project.basedir}/../liquibase/changelog/${project.version}/change.yaml</changeLogFile>
+                    <outputChangeLogFile>${project.basedir}/../liquibase/changelog/${project.version}/change.yaml</outputChangeLogFile>
+                    <diffChangeLogFile>${project.basedir}/../liquibase/changelog/${project.version}/diff.yaml</diffChangeLogFile>
+                    <dataDir>${project.basedir}/../liquibase/changelog/${project.version}</dataDir>
+                    <!-- 导出数据类型、默认不包含数据 -->
+                    <diffTypes>data,tables,columns,views,primaryKeys,uniqueconstraints,indexes,foreignKeys,sequences</diffTypes>
+                    <!-- 是否需要弹出确认框-->
+                    <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+                    <!--输出文件的编码-->
+                    <outputFileEncoding>UTF-8</outputFileEncoding>
+                    <!--执行的时候是否显示详细的参数信息-->
+                    <verbose>true</verbose>
+                    <!--是否每次都重新加载properties-->
+                    <!-- 父项目中配置子项目共享的LiquiBase配置，而各个子项目可以定义自己的配置，并覆盖父项目中的配置 -->
+                    <propertyFileWillOverride>true</propertyFileWillOverride>
+                    <rollbackTag>${project.version}</rollbackTag>
+                    <tag>${project.version}</tag>
+
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>update</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0-alpha-2</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <files>
+                                <file>${basedir}/src/main/resources/env/${env}/liquibase.properties</file>
+                            </files>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

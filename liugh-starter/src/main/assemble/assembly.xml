@@ -12,6 +12,7 @@
         <moduleSet>
             <useAllReactorProjects>true</useAllReactorProjects>
             <includes>
+                <include>com.liugh:liugh-db-manager</include>
                 <include>com.liugh:liugh-common</include>
                 <include>com.liugh:liugh-persistence</include>
                 <include>com.liugh:liugh-service</include>

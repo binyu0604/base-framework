@@ -23,7 +23,6 @@
             <artifactId>mybatis-plus</artifactId>
         </dependency>
         <!-- mybatis-plus end -->
-
     </dependencies>
 
     <build>
