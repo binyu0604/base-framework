@@ -7,7 +7,8 @@
     <groupId>com.liugh</groupId>
     <artifactId>liugh-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <!--<version>1.0-SNAPSHOT</version>-->
+    <version>1.0.1-SNAPSHOT</version>
 
     <modules>
         <module>liugh-db-manager</module>
@@ -66,27 +67,27 @@
             <dependency>
                 <groupId>com.liugh</groupId>
                 <artifactId>liugh-db-manager</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.liugh</groupId>
                 <artifactId>liugh-service</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.liugh</groupId>
                 <artifactId>liugh-web</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.liugh</groupId>
                 <artifactId>liugh-persistence</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.liugh</groupId>
                 <artifactId>liugh-common</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -279,8 +280,6 @@
             <id>dev</id>
             <properties>
                 <env>dev</env>
-                <liquibase-dir>${project.basedir}</liquibase-dir>
-                <version>${project.parent.version}</version>
             </properties>
             <!-- 如果不指定ID，默认是本地环境-->
             <activation>
@@ -291,14 +290,12 @@
             <id>test</id>
             <properties>
                 <env>test</env>
-                <liquibase-dir>${project.basedir}</liquibase-dir>
             </properties>
         </profile>
         <profile>
             <id>prod</id>
             <properties>
                 <env>prod</env>
-                <liquibase-dir>${project.basedir}</liquibase-dir>
             </properties>
         </profile>
     </profiles>

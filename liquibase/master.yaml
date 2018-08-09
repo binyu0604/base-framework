@@ -2,5 +2,8 @@ databaseChangeLog:
 #  - includeAll:
 #    - path: file:@liquibase-dir@/../liquibase/changelog
   - include:
-      file: file:@liquibase-dir@/../liquibase/changelog/db-master_1.0-SNAPSHOT.yaml
+      file: 'file:@basedir@/../liquibase/changelog/change-1.0.0.yaml'
       relativeToChangelogFile: false
+  - include:
+          file: 'file:@basedir@/../liquibase/changelog/change-1.0.1-SNAPSHOT.yaml'
+          relativeToChangelogFile: false

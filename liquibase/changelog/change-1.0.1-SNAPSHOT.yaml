@@ -1,6 +1,6 @@
 databaseChangeLog:
 - changeSet:
-    id: 1533718457866-1
+    id: 1533791720062-1
     author: jgt (generated)
     changes:
     - createTable:
@@ -53,7 +53,7 @@ databaseChangeLog:
             type: VARCHAR(50)
         tableName: tb_menu
 - changeSet:
-    id: 1533718457866-2
+    id: 1533791720062-2
     author: jgt (generated)
     changes:
     - createTable:
@@ -102,7 +102,7 @@ databaseChangeLog:
             type: LONGTEXT
         tableName: tb_operation_log
 - changeSet:
-    id: 1533718457866-3
+    id: 1533791720062-3
     author: jgt (generated)
     changes:
     - createTable:
@@ -121,7 +121,7 @@ databaseChangeLog:
             type: VARCHAR(50)
         tableName: tb_role
 - changeSet:
-    id: 1533718457866-4
+    id: 1533791720062-4
     author: jgt (generated)
     changes:
     - createTable:
@@ -147,7 +147,7 @@ databaseChangeLog:
             type: VARCHAR(50)
         tableName: tb_role_to_menu
 - changeSet:
-    id: 1533718457866-5
+    id: 1533791720062-5
     author: jgt (generated)
     changes:
     - createTable:
@@ -191,7 +191,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: tb_sms_verify
 - changeSet:
-    id: 1533718457866-6
+    id: 1533791720062-6
     author: jgt (generated)
     changes:
     - createTable:
@@ -245,7 +245,7 @@ databaseChangeLog:
             type: VARCHAR(32)
         tableName: tb_user
 - changeSet:
-    id: 1533718457866-7
+    id: 1533791720062-7
     author: jgt (generated)
     changes:
     - createTable:
@@ -271,7 +271,7 @@ databaseChangeLog:
             type: VARCHAR(50)
         tableName: tb_user_to_role
 - changeSet:
-    id: 1533718457866-8
+    id: 1533791720062-8
     author: jgt (generated)
     changes:
     - insert:
@@ -914,7 +914,7 @@ databaseChangeLog:
             name: icon
         tableName: tb_menu
 - changeSet:
-    id: 1533718457866-9
+    id: 1533791720062-9
     author: jgt (generated)
     changes:
     - insert:
@@ -1738,7 +1738,7 @@ databaseChangeLog:
             name: message
         tableName: tb_operation_log
 - changeSet:
-    id: 1533718457866-10
+    id: 1533791720062-10
     author: jgt (generated)
     changes:
     - insert:
@@ -1760,7 +1760,7 @@ databaseChangeLog:
             value: user
         tableName: tb_role
 - changeSet:
-    id: 1533718457866-11
+    id: 1533791720062-11
     author: jgt (generated)
     changes:
     - insert:
@@ -2076,7 +2076,7 @@ databaseChangeLog:
             value: menu-a8617c31t34ytrfsdfg3j5e36u121rfdg465u
         tableName: tb_role_to_menu
 - changeSet:
-    id: 1533718457866-12
+    id: 1533791720062-12
     author: jgt (generated)
     changes:
     - insert:
@@ -2185,7 +2185,7 @@ databaseChangeLog:
             valueNumeric: 1529984874513
         tableName: tb_sms_verify
 - changeSet:
-    id: 1533718457866-13
+    id: 1533791720062-13
     author: jgt (generated)
     changes:
     - insert:
@@ -2275,7 +2275,7 @@ databaseChangeLog:
             value: '5'
         tableName: tb_user
 - changeSet:
-    id: 1533718457866-14
+    id: 1533791720062-14
     author: jgt (generated)
     changes:
     - insert:

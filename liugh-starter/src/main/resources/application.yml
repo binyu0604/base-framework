@@ -7,7 +7,7 @@ server:
 ---
 spring:
   profiles:
-    active: @env@
+    active: '@env@'
     mvc:
       favicon:
         enabled: false
@@ -98,7 +98,7 @@ spring:
 ##    baseline-on-migrate: true
 spring:
   liquibase:
-    change-log: file:@liquibase-dir@/../liquibase/master.yaml
+    change-log: 'file:@basedir@/../liquibase/master.yaml'
 
 #    change-log: classpath:db/changelog/db.changelog-master.yaml
 ---

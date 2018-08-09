@@ -5,7 +5,7 @@
     <parent>
         <artifactId>liugh-parent</artifactId>
         <groupId>com.liugh</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -49,6 +49,7 @@
                 <directory>${project.basedir}/../liquibase</directory>
             </resource>
         </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -77,10 +78,15 @@
                     <!--suppress UnresolvedMavenProperty -->
                     <propertyFile>${project.basedir}/src/main/resources/env/${env}/liquibase.properties</propertyFile>
                     <!--指定执行主文件-->
-                    <changeLogFile>${project.basedir}/../liquibase/changelog/${project.version}/change.yaml</changeLogFile>
-                    <outputChangeLogFile>${project.basedir}/../liquibase/changelog/${project.version}/change.yaml</outputChangeLogFile>
-                    <diffChangeLogFile>${project.basedir}/../liquibase/changelog/${project.version}/diff.yaml</diffChangeLogFile>
-                    <dataDir>${project.basedir}/../liquibase/changelog/${project.version}</dataDir>
+                    <changeLogFile>${project.basedir}/../liquibase/changelog/change-${project.version}.yaml</changeLogFile>
+                    <outputChangeLogFile>${project.basedir}/../liquibase/changelog/change-${project.version}.yaml</outputChangeLogFile>
+                    <!--<changeLogFile>${project.basedir}/../liquibase/changelog/${project.version}/change-${project.version}.yaml</changeLogFile>-->
+                    <!--<outputChangeLogFile>${project.basedir}/../liquibase/changelog/${project.version}/change-${project.version}.yaml</outputChangeLogFile>-->
+                    <diffChangeLogFile>${project.basedir}/../liquibase/changelog/diff-${project.version}.yaml</diffChangeLogFile>
+                    <!--<dataDir>${project.basedir}/../liquibase/changelog/${project.version}</dataDir>-->
+                    <!--<outputDirectory>${project.basedir}/../liquibase/changelog/${project.version}</outputDirectory>-->
+                    <!--<changeLogDirectory>${project.basedir}/../liquibase/changelog/${project.version}</changeLogDirectory>-->
+
                     <!-- 导出数据类型、默认不包含数据 -->
                     <diffTypes>data,tables,columns,views,primaryKeys,uniqueconstraints,indexes,foreignKeys,sequences</diffTypes>
                     <!-- 是否需要弹出确认框-->
