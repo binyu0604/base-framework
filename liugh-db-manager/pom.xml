@@ -83,7 +83,7 @@
                         </goals>
                         <configuration>
                             <files>
-                                <file>${project.basedir}/src/main/resources/env/${env}/liquibase.properties</file>
+                                <file>${project.basedir}/../liquibase/env/${env}/liquibase.properties</file>
                             </files>
                             <!--输出全部配置项到指定文件-->
                             <outputFile>${project.build.directory}/profile.properties</outputFile>
@@ -108,7 +108,7 @@
                     <!--suppress UnresolvedMavenProperty -->
                     <!--指定数据库连接-->
                     <!--suppress UnresolvedMavenProperty -->
-                    <propertyFile>${project.basedir}/src/main/resources/env/${env}/liquibase.properties</propertyFile>
+                    <propertyFile>${project.basedir}/../liquibase/env/${env}/liquibase.properties</propertyFile>
                     <!--指定执行主文件-->
                     <!--<changeLogFile>${project.basedir}/../liquibase/changelog/change-${project.version}.yaml</changeLogFile>-->
                     <changeLogFile>${project.basedir}/../liquibase/changelog/change-1.0.0.yaml</changeLogFile>

@@ -4,7 +4,7 @@
 ---
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/liugh?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/liugh-prod?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     #    url: jdbc:mysql://localhost:3306/skywing?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: wangyue
     password: skywing

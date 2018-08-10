@@ -62,7 +62,7 @@ else
     JAVA_MEM_OPTS=" -server -Xms512m -Xmx512m -XX:PermSize=128m -XX:SurvivorRatio=2 -XX:+UseParallelGC "
 fi
 
-CONFIG_FILES=" -Dspring.profiles.active=prod -Dlogging.path=$LOGS_DIR -Dlogging.config=$LOG_CONF_DIR/logback.yml -Dspring.config.location=$CONF_DIR/application.yml,$CONF_DIR/aplication-prod.yml "
+CONFIG_FILES=" -Dproject.basedir=$BIN_DIR -Dspring.profiles.active=prod -Dlogging.path=$LOGS_DIR -Dlogging.config=$LOG_CONF_DIR/logback.yml -Dspring.config.location=$CONF_DIR/application.yml,$CONF_DIR/aplication-prod.yml "
 echo -e "Starting the $SERVER_NAME ..."
 nohup java $JAVA_OPTS $JAVA_MEM_OPTS $JAVA_DEBUG_OPTS $JAVA_JMX_OPTS $CONFIG_FILES -jar $DEPLOY_DIR/lib/$JAR_NAME > $STDOUT_FILE 2>&1 &
 

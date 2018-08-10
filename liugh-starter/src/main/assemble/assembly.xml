@@ -70,6 +70,24 @@
             </includes>
         </fileSet>
         <fileSet>
+            <directory>${user.dir}/liquibase</directory>
+            <outputDirectory>liquibase</outputDirectory>
+            <fileMode>0644</fileMode>
+            <includes>
+                <include>**/env/${env}/**</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${user.dir}/liquibase</directory>
+            <outputDirectory>liquibase</outputDirectory>
+            <fileMode>0644</fileMode>
+            <excludes>
+                <exclude>**/env/**</exclude>
+                <exclude>**/target/**</exclude>
+                <exclude>rebel*.xml</exclude>
+            </excludes>
+        </fileSet>
+        <fileSet>
             <directory>src/main/resources</directory>
             <outputDirectory>logs</outputDirectory>
             <fileMode>0755</fileMode>

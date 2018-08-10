@@ -3,7 +3,7 @@ echo off
 set APP_NAME=liugh-starter.jar
 set APP_PATH=%~sdp0
 echo %APP_PATH%
-set CONFIG= -Dspring.profiles.active=prod -Dlogging.path=%APP_PATH%..\logs -Dlogging.config=%APP_PATH%..\env\${spring.profiles.active}\logback.yml -Dspring.config.location=%APP_PATH%..\config\application.yml,%APP_PATH%..\config\application-prod.yml
+set CONFIG= -Dproject.basedir=%APP_PATH% -Dspring.profiles.active=prod -Dlogging.path=%APP_PATH%..\logs -Dlogging.config=%APP_PATH%..\env\${spring.profiles.active}\logback.yml -Dspring.config.location=%APP_PATH%..\config\application.yml,%APP_PATH%..\config\application-prod.yml
 
 set DEBUG_OPTS=
 if ""%1"" == ""debug"" (
