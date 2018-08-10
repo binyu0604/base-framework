@@ -7,3 +7,16 @@ target/
 .settings/
 .classpath
 /logs
+liugh-web/src/main/resources/rebel.xml,liugh-web/src/main/resources/rebel-remote.xml,liugh-starter/src/main/resources/rebel.xml,liugh-starter/src/main/resources/rebel-remote.xml,liugh-service/src/main/resources/rebel.xml,liugh-service/src/main/resources/rebel-remote.xml,liugh-persistence/src/main/resources/rebel.xml,liugh-persistence/src/main/resources/rebel-remote.xml,liugh-db-manager/src/main/resources/rebel.xml,liugh-db-manager/src/main/resources/rebel-remote.xml,liugh-common/src/main/resources/rebel.xml,liugh-common/src/main/resources/rebel-remote.xml
+liugh-web/src/main/resources/rebel.xml
+liugh-web/src/main/resources/rebel-remote.xml
+liugh-starter/src/main/resources/rebel.xml
+liugh-starter/src/main/resources/rebel-remote.xml
+liugh-service/src/main/resources/rebel-remote.xml
+liugh-persistence/src/main/resources/rebel.xml
+liugh-persistence/src/main/resources/rebel-remote.xml
+liugh-db-manager/src/main/resources/rebel.xml
+liugh-db-manager/src/main/resources/rebel-remote.xml
+liugh-service/src/main/resources/rebel.xml
+rebel.xml
+liquibase/rebel-remote.xml

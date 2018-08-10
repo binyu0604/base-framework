@@ -13,7 +13,7 @@
     <artifactId>liugh-db-manager</artifactId>
     <packaging>jar</packaging>
 
-    <name>db-manager</name>
+    <name>liugh-db-manager</name>
     <description>db manager project for Spring Boot</description>
 
     <properties>
@@ -47,6 +47,16 @@
             <resource>
                 <filtering>true</filtering>
                 <directory>${project.basedir}/../liquibase</directory>
+                <includes>
+                    <include>*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <includes>
+                    <include>*.properties</include>
+                </includes>
             </resource>
         </resources>
 
@@ -58,6 +68,28 @@
                 <configuration>
                     <encoding>UTF-8</encoding>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0-alpha-2</version>
+                <executions>
+                    <execution>
+                        <id>default-cli</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                            <goal>write-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <files>
+                                <file>${project.basedir}/src/main/resources/env/${env}/liquibase.properties</file>
+                            </files>
+                            <!--输出全部配置项到指定文件-->
+                            <outputFile>${project.build.directory}/profile.properties</outputFile>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.liquibase</groupId>
@@ -78,14 +110,17 @@
                     <!--suppress UnresolvedMavenProperty -->
                     <propertyFile>${project.basedir}/src/main/resources/env/${env}/liquibase.properties</propertyFile>
                     <!--指定执行主文件-->
-                    <changeLogFile>${project.basedir}/../liquibase/changelog/change-${project.version}.yaml</changeLogFile>
+                    <!--<changeLogFile>${project.basedir}/../liquibase/changelog/change-${project.version}.yaml</changeLogFile>-->
+                    <changeLogFile>${project.basedir}/../liquibase/changelog/change-1.0.0.yaml</changeLogFile>
                     <outputChangeLogFile>${project.basedir}/../liquibase/changelog/change-${project.version}.yaml</outputChangeLogFile>
                     <!--<changeLogFile>${project.basedir}/../liquibase/changelog/${project.version}/change-${project.version}.yaml</changeLogFile>-->
                     <!--<outputChangeLogFile>${project.basedir}/../liquibase/changelog/${project.version}/change-${project.version}.yaml</outputChangeLogFile>-->
                     <diffChangeLogFile>${project.basedir}/../liquibase/changelog/diff-${project.version}.yaml</diffChangeLogFile>
+                    <migrationSqlOutputFile>${project.basedir}/../liquibase/changelog/migration-${project.version}.sql</migrationSqlOutputFile>
                     <!--<dataDir>${project.basedir}/../liquibase/changelog/${project.version}</dataDir>-->
                     <!--<outputDirectory>${project.basedir}/../liquibase/changelog/${project.version}</outputDirectory>-->
-                    <!--<changeLogDirectory>${project.basedir}/../liquibase/changelog/${project.version}</changeLogDirectory>-->
+                    <changeLogDirectory>${project.basedir}/../liquibase/changelog</changeLogDirectory>
+                    <!--<referenceUrl>${url}</referenceUrl>-->
 
                     <!-- 导出数据类型、默认不包含数据 -->
                     <diffTypes>data,tables,columns,views,primaryKeys,uniqueconstraints,indexes,foreignKeys,sequences</diffTypes>
@@ -111,24 +146,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>properties-maven-plugin</artifactId>
-                <version>1.0-alpha-2</version>
-                <executions>
-                    <execution>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>read-project-properties</goal>
-                        </goals>
-                        <configuration>
-                            <files>
-                                <file>${basedir}/src/main/resources/env/${env}/liquibase.properties</file>
-                            </files>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
         </plugins>
     </build>
 

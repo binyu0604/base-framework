@@ -48,10 +48,10 @@ spring:
 #    url: jdbc:mysql://localhost:3306/skywing?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: wangyue
     password: skywing
-  flyway:
-    url: jdbc:mysql://localhost:3306/liugh?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
-    password: root
-    user: root
+#  flyway:
+#    url: jdbc:mysql://localhost:3306/liugh?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+#    password: root
+#    user: root
 
 ---
 logging:

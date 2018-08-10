@@ -1,0 +1,22 @@
+databaseChangeLog:
+- changeSet:
+    id: 1533882978613-1
+    author: jgt (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+            name: id
+            remarks: 主键
+            type: INT UNSIGNED
+        - column:
+            constraints:
+              nullable: false
+            name: geo
+            remarks: 地理信息
+            type: GEOMETRY
+        tableName: tb_test
+
