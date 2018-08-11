@@ -98,7 +98,7 @@ spring:
 ##    baseline-on-migrate: true
 spring:
   liquibase:
-    change-log: 'file:${project.basedir}/../liquibase/master.yaml'
+    change-log: 'file:${project.basedir}/../liquibase/env/${spring.profiles.active}/master.yaml'
 
 #    change-log: classpath:db/changelog/db.changelog-master.yaml
 ---
