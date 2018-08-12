@@ -61,6 +61,7 @@ public class ShiroConfig {
         factoryBean.setFilters(filterMap);
         factoryBean.setSecurityManager(securityManager);
         factoryBean.setUnauthorizedUrl("/api/401");
+        factoryBean.setLoginUrl("/api/login");
         /*
          * 自定义url规则
          * http://shiro.apache.org/web.html#urls-

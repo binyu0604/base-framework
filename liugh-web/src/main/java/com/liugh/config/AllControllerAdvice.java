@@ -46,7 +46,7 @@ public class AllControllerAdvice {
     public PublicResult<String> errorHandler(Exception ex) {
         ex.printStackTrace();
         logger.error("接口出现严重异常：{}", ex.getMessage());
-        return new PublicResult<>(PublicResultConstant.FAILED, null);
+        return new PublicResult<>(PublicResultConstant.FAILED, ex.getMessage());
     }
 
     /**
@@ -54,10 +54,10 @@ public class AllControllerAdvice {
      * @return
      */
     @ResponseStatus(HttpStatus.OK)
-    @ExceptionHandler(UnauthorizedException.class)
+    @ExceptionHandler({UnauthorizedException.class,org.apache.shiro.authc.AuthenticationException.class})
     @ResponseBody
-    public PublicResult<String> handleUnauthorized() {
-        return new PublicResult<>(PublicResultConstant.USER_NO_PERMITION, null);
+    public PublicResult<String> handleUnauthorized(Exception ex) {
+        return new PublicResult<>(PublicResultConstant.USER_NO_PERMITION, ex.getMessage());
     }
 
     /**
@@ -69,7 +69,7 @@ public class AllControllerAdvice {
     @ExceptionHandler(ShiroException.class)
     @ResponseBody
     public PublicResult<String> handleShiroException(ShiroException e) {
-        return new PublicResult<>(PublicResultConstant.USER_NO_PERMITION, null);
+        return new PublicResult<>(PublicResultConstant.USER_NO_PERMITION, e.getMessage());
     }
 
     /**
@@ -82,16 +82,16 @@ public class AllControllerAdvice {
     public BaseResult handleBusinessException(BusinessException e) {
         if(e instanceof BusinessException) {
             logger.info("数据操作失败："+e.getMessage());
-            return new BaseResult(PublicResultConstant.DATA_ERROR.getResult(), e.getMessage(),null);
+            return new BaseResult(PublicResultConstant.DATA_ERROR.getResult(), e.getMessage());
         }
-        return new PublicResult(PublicResultConstant.ERROR, null);
+        return new PublicResult(PublicResultConstant.ERROR, e.getMessage());
     }
 
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(TemplateInputException.class)
     @ResponseBody
     public PublicResult<String> handleTemplateInputException(TemplateInputException e) {
-        return new PublicResult<>(PublicResultConstant.USER_NO_PERMITION, null);
+        return new PublicResult<>(PublicResultConstant.USER_NO_PERMITION, e.getMessage());
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -102,7 +102,7 @@ public class AllControllerAdvice {
             logger.info("参数错误："+e.getMessage());
             return new BaseResult<>(PublicResultConstant.PARAM_ERROR.getResult(), e.getMessage(),null, null);
         }
-        return new PublicResult<>(PublicResultConstant.ERROR, null);
+        return new PublicResult<>(PublicResultConstant.ERROR, e.getMessage());
     }
 
 

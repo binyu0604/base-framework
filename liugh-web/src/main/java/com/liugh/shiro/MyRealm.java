@@ -1,18 +1,15 @@
 package com.liugh.shiro;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.liugh.base.Constant;
 import com.liugh.config.SpringContextBean;
 import com.liugh.entity.Role;
-import com.liugh.exception.UnauthorizedException;
-import com.liugh.entity.Menu;
 import com.liugh.entity.User;
 import com.liugh.entity.UserToRole;
+import com.liugh.exception.UnauthorizedException;
 import com.liugh.service.IMenuService;
 import com.liugh.service.IRoleService;
 import com.liugh.service.IUserService;
 import com.liugh.service.IUserToRoleService;
-import com.liugh.util.ComUtil;
 import com.liugh.util.JWTUtil;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -26,7 +23,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**

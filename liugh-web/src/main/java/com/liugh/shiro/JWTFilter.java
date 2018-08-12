@@ -68,10 +68,11 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
         if (isLoginAttempt(request, response)) {
             try {
-                executeLogin(request, response);
+                return executeLogin(request, response);
             } catch (Exception e) {
                 e.printStackTrace();
-                response401(request, response);
+                //response401(request, response);
+                return false;
             }
         }
         return true;
@@ -101,15 +102,22 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
             httpServletResponse.setStatus(HttpStatus.OK.value());
             return false;
         }
-        String authorization = httpServletRequest.getHeader("Authorization");
-        if (verificationPassAnnotation(request, response, httpServletRequest, authorization)){
-            return true;
-        }
-        if(ComUtil.isEmpty(authorization)){
+        try {
+            String authorization = httpServletRequest.getHeader("Authorization");
+            if (verificationPassAnnotation(request, response, httpServletRequest, authorization)){
+                return true;
+            }
+            if(ComUtil.isEmpty(authorization)){
+                response401(request, response);
+                return false;
+            }
+            return super.preHandle(request, response);
+        }catch (Exception ex){
+            ex.printStackTrace();
             response401(request, response);
-            return false;
+           return false;
         }
-        return super.preHandle(request, response);
+
     }
 
     /**
