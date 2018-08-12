@@ -1,9 +1,12 @@
 package com.liugh.base;
 
+import lombok.Data;
+
 /**
  * @author liugh
  * @since 2018-05-03
  */
+@Data
 public class BaseResult<T> {
     private String result;
     private String msg;
@@ -15,7 +18,7 @@ public class BaseResult<T> {
     /**
      * 处理耗时(毫秒)
      */
-    private Long elapsedMilliseconds;
+    private Long elapsedMilliseconds = -1L;
 
     public BaseResult() {
     }
@@ -44,43 +47,4 @@ public class BaseResult<T> {
         this.elapsedMilliseconds = elapsedMilliseconds;
     }
 
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    public long getElapsedMilliseconds() {
-        return elapsedMilliseconds;
-    }
-
-    public void setElapsedMilliseconds(long elapsedMilliseconds) {
-        this.elapsedMilliseconds = elapsedMilliseconds;
-    }
-
-    public boolean isSuccess() {
-        return isSuccess;
-    }
-
-    public void setIsSuccess(boolean isSuccess) {
-        this.isSuccess = isSuccess;
-    }
 }

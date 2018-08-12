@@ -82,13 +82,13 @@ public class ServiceMonitor {
         try {
             result = pjp.proceed();
             if (result instanceof PublicResult) {
-                ((PublicResult<?>) result).setIsSuccess(true);
+                ((PublicResult<?>) result).setSuccess(true);
             }
         } catch (Throwable e) {
 
             if (result != null && result instanceof PublicResult) {
                 PublicResult<?> errorResult = (PublicResult<?>) result;
-                errorResult.setIsSuccess(false);
+                errorResult.setSuccess(false);
                 if (StringUtils.isEmpty(errorResult.getResult())) {
                     errorResult.setResult(PublicResultConstant.UNKNOWN.result);
                 }
