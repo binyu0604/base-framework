@@ -67,11 +67,11 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
         if (isLoginAttempt(request, response)) {
             try {
-                return executeLogin(request, response);
+                executeLogin(request, response);
             } catch (Exception e) {
                 e.printStackTrace();
-                //response401(request, response);
-                return false;
+                response401(request, response);
+                //return false;
             }
         }
         return true;

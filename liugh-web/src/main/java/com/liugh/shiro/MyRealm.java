@@ -17,9 +17,15 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.DependsOn;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -108,5 +114,68 @@ public class MyRealm extends AuthorizingRealm {
             throw new UnauthorizedException("Username or password error");
         }
         return new SimpleAuthenticationInfo(token, token, this.getName());
+    }
+
+//    /**
+//     * 只有当需要检测用户权限的时候才会调用此方法，例如checkRole,checkPermission之类的
+//     */
+//    @Override
+//    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+//        String username = JWTUtil.getUsername(principals.toString());
+//        UserBean user = userService.getUser(username);
+//        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
+//        simpleAuthorizationInfo.addRole(user.getRole());
+//        Set<String> permission = new HashSet<>(Arrays.asList(user.getPermission().split(",")));
+//        simpleAuthorizationInfo.addStringPermissions(permission);
+//        return simpleAuthorizationInfo;
+//    }
+//
+//    /**
+//     * 默认使用此方法进行用户名正确与否验证，错误抛出异常即可。
+//     */
+//    @Override
+//    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken auth) throws AuthenticationException {
+//        String token = (String) auth.getCredentials();
+//        // 解密获得username，用于和数据库进行对比
+//        String username = JWTUtil.getUsername(token);
+//        if (username == null) {
+//            throw new AuthenticationException("token invalid");
+//        }
+//
+//        UserBean userBean = userService.getUser(username);
+//        if (userBean == null) {
+//            throw new AuthenticationException("User didn't existed!");
+//        }
+//
+//        if (! JWTUtil.verify(token, username, userBean.getPassword())) {
+//            throw new AuthenticationException("Username or password error");
+//        }
+//
+//        return new SimpleAuthenticationInfo(token, token, "my_realm");
+//    }
+
+    /**
+     * 下面的代码是添加注解支持
+     */
+    @Bean
+    @DependsOn("lifecycleBeanPostProcessor")
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+        // 强制使用cglib，防止重复代理和可能引起代理出错的问题
+        // https://zhuanlan.zhihu.com/p/29161098
+        defaultAdvisorAutoProxyCreator.setProxyTargetClass(true);
+        return defaultAdvisorAutoProxyCreator;
+    }
+
+    @Bean
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+        return new LifecycleBeanPostProcessor();
+    }
+
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(DefaultWebSecurityManager securityManager) {
+        AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
+        advisor.setSecurityManager(securityManager);
+        return advisor;
     }
 }
