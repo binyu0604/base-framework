@@ -20,12 +20,10 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 
@@ -42,6 +40,8 @@ public class LoginController {
     private IUserService userService;
     @Autowired
     private ISmsVerifyService smsVerifyService;
+    @Autowired
+    private  HttpServletResponse resp;
 
     @ApiOperation(value="手机密码登录", notes="body体参数,不需要Authorization",produces = "application/json")
     @ApiImplicitParams({
@@ -63,6 +63,7 @@ public class LoginController {
             return new PublicResult<>(PublicResultConstant.INVALID_USERNAME_PASSWORD, null);
         }
         Map<String, Object> result = userService.getLoginUserAndMenuInfo(user);
+        resp.setHeader("Authorization", user.getToken());
         return new PublicResult<>(PublicResultConstant.SUCCESS, result);
     }
 
@@ -93,6 +94,7 @@ public class LoginController {
             return new PublicResult<>(PublicResultConstant.VERIFY_PARAM_PASS, null);
         }
         Map<String, Object> result = userService.getLoginUserAndMenuInfo(user);
+
         return new PublicResult<>(PublicResultConstant.SUCCESS, result);
     }
 

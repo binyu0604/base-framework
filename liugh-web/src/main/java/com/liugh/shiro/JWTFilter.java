@@ -26,7 +26,6 @@ import java.io.IOException;
  */
 public class JWTFilter extends BasicHttpAuthenticationFilter {
 
-
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     private IUserService userService;
     /**
