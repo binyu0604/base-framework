@@ -104,14 +104,17 @@ public class MyRealm extends AuthorizingRealm {
         // 解密获得username，用于和数据库进行对比
         String userNo = JWTUtil.getUserNo(token);
         if (userNo == null) {
-            throw new UnauthorizedException("token invalid");
+            //throw new UnauthorizedException("token invalid");
+            throw new UnauthorizedException("token认证失败！");
         }
         User userBean = userService.selectById(userNo);
         if (userBean == null) {
-            throw new UnauthorizedException("User didn't existed!");
+            throw new UnauthorizedException("该用户不存在！");
+            //throw new UnauthorizedException("User didn't existed!");
         }
         if (! JWTUtil.verify(token, userNo, userBean.getPassWord())) {
-            throw new UnauthorizedException("Username or password error");
+            throw new UnauthorizedException("用户名或密码错误！");
+            //throw new UnauthorizedException("Username or password error");
         }
         return new SimpleAuthenticationInfo(token, token, this.getName());
     }
