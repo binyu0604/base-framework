@@ -1,6 +1,7 @@
 package com.liugh.shiro;
 
 import com.liugh.base.Constant;
+import com.liugh.base.GlobalDefine;
 import com.liugh.config.SpringContextBean;
 import com.liugh.entity.User;
 import com.liugh.service.IUserService;
@@ -35,7 +36,7 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
     @Override
     protected boolean isLoginAttempt(ServletRequest request, ServletResponse response) {
         HttpServletRequest req = (HttpServletRequest) request;
-        String authorization = req.getHeader("Authorization");
+        String authorization = req.getHeader(JWTToken.TOKEN_KEY);
         return authorization != null;
     }
 
@@ -45,7 +46,7 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
     @Override
     protected boolean executeLogin(ServletRequest request, ServletResponse response) throws Exception {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-        String authorization = httpServletRequest.getHeader("Authorization");
+        String authorization = httpServletRequest.getHeader(JWTToken.TOKEN_KEY);
         JWTToken token = new JWTToken(authorization);
         // 提交给realm进行登入，如果错误他会抛出异常并被捕获
         getSubject(request, response).login(token);
@@ -83,7 +84,7 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
         }
         String userNo =  JWTUtil.getUserNo(token.getPrincipal().toString());
         User userBean = userService.selectById(userNo);
-        request.setAttribute("currentUser", userBean);
+        request.setAttribute(Constant.CURRENT_USER_KEY, userBean);
     }
 
     /**
@@ -102,7 +103,7 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
             return false;
         }
         try {
-            String authorization = httpServletRequest.getHeader("Authorization");
+            String authorization = httpServletRequest.getHeader(JWTToken.TOKEN_KEY);
             if (verificationPassAnnotation(request, response, httpServletRequest, authorization)){
                 return true;
             }
@@ -129,13 +130,13 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
      * @throws Exception
      */
     private boolean verificationPassAnnotation(ServletRequest request, ServletResponse response, HttpServletRequest httpServletRequest, String authorization) throws Exception {
-        for (String urlMethod: Constant.METHOD_URL_SET) {
+        for (String urlMethod: GlobalDefine.METHOD_URL_SET) {
             String[] split = urlMethod.split(":--:");
             if(split[0].equals(httpServletRequest.getRequestURI())
                     && (split[1].equals(httpServletRequest.getMethod()) ||  split[1].equals("RequestMapping"))){
                 if(ComUtil.isEmpty(authorization)){
                     //如果当前url不需要认证，则注入当前登录用户时，给一个空的
-                    httpServletRequest.setAttribute("currentUser",new User());
+                    httpServletRequest.setAttribute(Constant.CURRENT_USER_KEY ,new User());
                     return true;
                 }else {
                     super.preHandle(request, response);
@@ -146,7 +147,7 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
                     && (split[1].equals(httpServletRequest.getMethod()) ||  split[1].equals("RequestMapping"))){
                 if(isSameUrl(split[0],httpServletRequest.getRequestURI())){
                     if(ComUtil.isEmpty(authorization)){
-                        httpServletRequest.setAttribute("currentUser",new User());
+                        httpServletRequest.setAttribute(Constant.CURRENT_USER_KEY,new User());
                         return true;
                     }else {
                         super.preHandle(request, response);

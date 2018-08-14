@@ -1,6 +1,7 @@
 package com.liugh.shiro;
 
 import com.liugh.annotation.CurrentUser;
+import com.liugh.base.Constant;
 import com.liugh.entity.User;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -23,7 +24,7 @@ public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentR
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        User user = (User) webRequest.getAttribute("currentUser", RequestAttributes.SCOPE_REQUEST);
+        User user = (User) webRequest.getAttribute(Constant.CURRENT_USER_KEY, RequestAttributes.SCOPE_REQUEST);
         if (user == null) {
             //throw new UnauthorizedException("获取用户信息失败");
         }

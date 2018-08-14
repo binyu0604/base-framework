@@ -1,5 +1,6 @@
 package com.liugh.config;
 
+import com.liugh.shiro.JWTToken;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -33,7 +34,7 @@ public class SwaggerConfig {
         ParameterBuilder aParameterBuilder = new ParameterBuilder();
         aParameterBuilder
                 .parameterType("header")
-                .name("Authorization")
+                .name(JWTToken.TOKEN_KEY)
                 .description("header中Authorization字段用于认证")
                 .modelRef(new ModelRef("string"))
                 //非必需，这里是全局配置，然而在登陆的时候是不用验证的

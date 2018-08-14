@@ -11,6 +11,7 @@ import com.liugh.entity.SmsVerify;
 import com.liugh.entity.User;
 import com.liugh.service.ISmsVerifyService;
 import com.liugh.service.IUserService;
+import com.liugh.shiro.JWTToken;
 import com.liugh.util.ComUtil;
 import com.liugh.util.SmsSendUtil;
 import com.liugh.util.StringUtil;
@@ -63,7 +64,7 @@ public class LoginController {
             return new PublicResult<>(PublicResultConstant.INVALID_USERNAME_PASSWORD, null);
         }
         Map<String, Object> result = userService.getLoginUserAndMenuInfo(user);
-        resp.setHeader("Authorization", user.getToken());
+        resp.setHeader(JWTToken.TOKEN_KEY , user.getToken());
         return new PublicResult<>(PublicResultConstant.SUCCESS, result);
     }
 

@@ -1,7 +1,7 @@
 package com.liugh.config;
 
 import com.liugh.annotation.Pass;
-import com.liugh.base.Constant;
+import com.liugh.base.GlobalDefine;
 import com.liugh.util.ComUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -38,7 +38,7 @@ public class MyCommandLineRunner implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		doScanner(scanPackage);
 		Set<String> urlAndMethodSet  =new HashSet<>();
-		for (String aClassName:Constant.METHOD_URL_SET) {
+		for (String aClassName:GlobalDefine.METHOD_URL_SET) {
 			Class<?> clazz = Class.forName(aClassName);
 			String baseUrl = "";
 			String[] classUrl ={};
@@ -84,7 +84,7 @@ public class MyCommandLineRunner implements CommandLineRunner {
 				}
 			}
 		}
-		Constant.METHOD_URL_SET=urlAndMethodSet;
+		GlobalDefine.METHOD_URL_SET=urlAndMethodSet;
 		logger.info("@Pass:"+urlAndMethodSet);
 	}
 
@@ -145,7 +145,7 @@ public class MyCommandLineRunner implements CommandLineRunner {
 												.length() - 6);
 								try {
 									// 添加到classes
-									Constant.METHOD_URL_SET.add(Class
+									GlobalDefine.METHOD_URL_SET.add(Class
 											.forName(packageName + '.'
 													+ className).getName());
 								} catch (ClassNotFoundException e) {
@@ -167,7 +167,7 @@ public class MyCommandLineRunner implements CommandLineRunner {
 				doScanner(packageName+"."+file.getName());
 			}else{
 				String className =packageName +"." +file.getName().replace(".class", "");
-				Constant.METHOD_URL_SET.add(className);
+				GlobalDefine.METHOD_URL_SET.add(className);
 			}
 		}
 	}

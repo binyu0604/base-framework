@@ -5,6 +5,7 @@ import com.liugh.annotation.Log;
 import com.liugh.config.SpringContextBean;
 import com.liugh.entity.OperationLog;
 import com.liugh.service.IOperationLogService;
+import com.liugh.shiro.JWTToken;
 import com.liugh.util.ComUtil;
 import com.liugh.util.JWTUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -66,7 +67,7 @@ public class RecordLogAspect implements AspectApi {
         IOperationLogService operationLogService = SpringContextBean.getBean(IOperationLogService.class);
         ServletRequestAttributes sra = (ServletRequestAttributes) ra;
         HttpServletRequest request = sra.getRequest();
-        String authorization = request.getHeader("Authorization");
+        String authorization = request.getHeader(JWTToken.TOKEN_KEY);
         OperationLog operationLog = new OperationLog();
         if(!ComUtil.isEmpty(authorization)){
             String userNo = JWTUtil.getUserNo(authorization);
