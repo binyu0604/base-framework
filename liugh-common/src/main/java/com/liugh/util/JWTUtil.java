@@ -55,7 +55,7 @@ public class JWTUtil {
      * @param secret 用户的密码
      * @return 加密的token
      */
-    public static String sign(String userNo, String secret) {
+    public static String sign(Long userNo, String secret) {
         Date date = new Date(System.currentTimeMillis()+EXPIRE_TIME);
         Algorithm algorithm = Algorithm.HMAC256(secret);
         // 附带username信息

@@ -18,6 +18,6 @@ public interface IUserToRoleService extends IService<UserToRole> {
      * @param userNo 用户ID
      * @return  结果
      */
-    UserToRole selectByUserNo(String  userNo);
+    UserToRole selectByUserNo(Long  userNo);
 
 }

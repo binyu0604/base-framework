@@ -9,7 +9,7 @@ import org.apache.shiro.authc.AuthenticationToken;
 public class JWTToken implements AuthenticationToken {
 
     // 存储在header中的token名称
-    public static final String TOKEN_KEY = "token";
+    public static final String TOKEN_KEY = "Authorization";
 
     // 密钥
     private String token;

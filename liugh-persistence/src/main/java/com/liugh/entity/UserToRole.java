@@ -1,12 +1,12 @@
 package com.liugh.entity;
 
-import java.io.Serializable;
-
-import com.baomidou.mybatisplus.enums.IdType;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -30,7 +30,7 @@ public class UserToRole extends Model<UserToRole> {
      * 用户编号
      */
     @TableField("user_no")
-    private String userNo;
+    private Long userNo;
     /**
      * 角色代号
      */
@@ -46,11 +46,11 @@ public class UserToRole extends Model<UserToRole> {
         this.userToRoleId = userToRoleId;
     }
 
-    public String getUserNo() {
+    public Long getUserNo() {
         return userNo;
     }
 
-    public void setUserNo(String userNo) {
+    public void setUserNo(Long userNo) {
         this.userNo = userNo;
     }
 

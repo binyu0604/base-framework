@@ -4,17 +4,14 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.liugh.base.Constant;
 import com.liugh.entity.Menu;
-import com.liugh.service.IMenuService;
-import com.liugh.service.IUserService;
-import com.liugh.service.IUserToRoleService;
 import com.liugh.entity.User;
 import com.liugh.entity.UserToRole;
 import com.liugh.mapper.UserMapper;
-import com.liugh.util.ComUtil;
-import com.liugh.util.GenerationSequenceUtil;
+import com.liugh.service.IMenuService;
+import com.liugh.service.IUserService;
+import com.liugh.service.IUserToRoleService;
 import com.liugh.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -56,7 +53,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public boolean register(User user, String  roleCode) {
-        user.setUserNo(GenerationSequenceUtil.generateUUID("user"));
+        //user.setUserNo(GenerationSequenceUtil.generateUUID("user"));
         user.setCreateTime(System.currentTimeMillis());
         boolean result = this.insert(user);
         if (result) {

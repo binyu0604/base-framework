@@ -1,11 +1,11 @@
 package com.liugh.entity;
 
-import java.io.Serializable;
-
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -26,7 +26,7 @@ public class User extends Model<User> {
      * 用户主键
      */
     @TableId("user_no")
-    private String userNo;
+    private Long userNo;
     /**
      * 是电话号码，也是账号（登录用）
      */
@@ -75,11 +75,11 @@ public class User extends Model<User> {
         this.token = token;
     }
 
-    public String getUserNo() {
+    public Long getUserNo() {
         return userNo;
     }
 
-    public void setUserNo(String userNo) {
+    public void setUserNo(Long userNo) {
         this.userNo = userNo;
     }
 
