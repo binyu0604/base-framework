@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -16,6 +17,7 @@ import java.io.Serializable;
  * @author liugh123
  * @since 2018-06-25
  */
+@Data
 @TableName("tb_user_to_role")
 public class UserToRole extends Model<UserToRole> {
 
@@ -35,32 +37,32 @@ public class UserToRole extends Model<UserToRole> {
      * 角色代号
      */
     @TableField("role_code")
-    private String roleCode;
+    private Long roleCode;
 
 
-    public Integer getUserToRoleId() {
-        return userToRoleId;
-    }
-
-    public void setUserToRoleId(Integer userToRoleId) {
-        this.userToRoleId = userToRoleId;
-    }
-
-    public Long getUserNo() {
-        return userNo;
-    }
-
-    public void setUserNo(Long userNo) {
-        this.userNo = userNo;
-    }
-
-    public String getRoleCode() {
-        return roleCode;
-    }
-
-    public void setRoleCode(String roleCode) {
-        this.roleCode = roleCode;
-    }
+//    public Integer getUserToRoleId() {
+//        return userToRoleId;
+//    }
+//
+//    public void setUserToRoleId(Integer userToRoleId) {
+//        this.userToRoleId = userToRoleId;
+//    }
+//
+//    public Long getUserNo() {
+//        return userNo;
+//    }
+//
+//    public void setUserNo(Long userNo) {
+//        this.userNo = userNo;
+//    }
+//
+//    public String getRoleCode() {
+//        return roleCode;
+//    }
+//
+//    public void setRoleCode(String roleCode) {
+//        this.roleCode = roleCode;
+//    }
 
     @Override
     protected Serializable pkVal() {

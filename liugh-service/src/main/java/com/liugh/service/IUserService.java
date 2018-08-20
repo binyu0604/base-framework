@@ -2,6 +2,7 @@ package com.liugh.service;
 
 import com.liugh.entity.User;
 import com.baomidou.mybatisplus.service.IService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import java.util.Map;
  * @author liugh123
  * @since 2018-05-03
  */
+@Transactional
 public interface IUserService extends IService<User> {
 
     /**

@@ -36,6 +36,13 @@ public interface IRoleService extends IService<Role> {
      * @param roleCode
      * @return
      */
-    Map<String,Object> getMenuByRoleCode(String roleCode);
+    Map<String,Object> getMenuByRoleCode(Long roleCode);
+
+    /**
+     * 通过角色名获取当前角色
+     * @param roleName 角色名
+     * @return
+     */
+    Role getRoleByRoleName(String roleName);
 
 }

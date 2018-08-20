@@ -27,7 +27,7 @@ public interface IMenuService extends IService<Menu> {
      * @param roleCode 角色主键
      * @return
      */
-    List<Menu> findMenuByRoleCode(String roleCode);
+    List<Menu> findMenuByRoleCode(Long roleCode);
 
     /**
      * 获取菜单树形结构

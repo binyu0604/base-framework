@@ -2,13 +2,10 @@ package com.liugh.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.liugh.base.Constant;
-import com.liugh.entity.Menu;
-import com.liugh.service.IRoleToMenuService;
 import com.liugh.entity.RoleToMenu;
 import com.liugh.mapper.RoleToMenuMapper;
+import com.liugh.service.IRoleToMenuService;
 import com.liugh.util.ComUtil;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -35,7 +32,7 @@ public class RoleToMenuServiceImpl extends ServiceImpl<RoleToMenuMapper, RoleToM
     }
 
     @Override
-    public boolean saveAll(String roleCode, List<String> menuCodes) {
+    public boolean saveAll(Long roleCode, List<String> menuCodes) {
         boolean result = true;
         if (!ComUtil.isEmpty(menuCodes)) {
             List<RoleToMenu> modelList = new ArrayList<>();

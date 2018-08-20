@@ -39,6 +39,10 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
 
     @Autowired
     private IMenuService menuService;
+
+    @Autowired
+    private RoleMapper roleMapper;
+
     @Override
     public boolean addRoleAndPermission(RoleModel roleModel) throws Exception{
         Role role = new Role();
@@ -75,7 +79,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
     }
 
     @Override
-    public Map<String, Object> getMenuByRoleCode(String roleCode) {
+    public Map<String, Object> getMenuByRoleCode(Long roleCode) {
         Map<String,Object> retMap   =new HashMap<>();
         List<Menu> menuList = menuService.findMenuByRoleCode(roleCode);
         List<Menu> buttonList = new ArrayList<Menu>();
@@ -88,5 +92,10 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
         retMap.put("menuList",retMenuList);
         retMap.put("buttonList",buttonList);
         return retMap;
+    }
+
+    @Override
+    public Role getRoleByRoleName(String roleName) {
+        return roleMapper.getRoleByRoleName(roleName);
     }
 }

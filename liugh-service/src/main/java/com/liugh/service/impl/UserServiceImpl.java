@@ -8,6 +8,7 @@ import com.liugh.entity.User;
 import com.liugh.entity.UserToRole;
 import com.liugh.mapper.UserMapper;
 import com.liugh.service.IMenuService;
+import com.liugh.service.IRoleService;
 import com.liugh.service.IUserService;
 import com.liugh.service.IUserToRoleService;
 import com.liugh.util.JWTUtil;
@@ -34,6 +35,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     private IUserToRoleService userToRoleService;
     @Autowired
     private IMenuService menuService;
+    @Autowired
+    private IRoleService roleService;
 
     @Override
 //    @Cacheable(value = "UserToRole",keyGenerator="wiselyKeyGenerator")
@@ -59,7 +62,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         if (result) {
             UserToRole userToRole  = new UserToRole();
             userToRole.setUserNo(user.getUserNo());
-            userToRole.setRoleCode(roleCode);
+            userToRole.setRoleCode(roleService.getRoleByRoleName(roleCode).getRoleCode());
             result = userToRoleService.insert(userToRole);
         }
         return result;

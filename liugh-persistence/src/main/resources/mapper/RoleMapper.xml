@@ -13,4 +13,14 @@
         role_code AS roleCode, role_name AS roleName
     </sql>
 
+    <!-- 根据角色查询菜单 -->
+    <select id="getRoleByRoleName" resultMap="BaseResultMap">
+        select r.* from tb_role r
+        WHERE
+        1 = 1
+        <if test=" roleName !=null and roleName !=''">
+            AND r.role_name = #{roleName}
+        </if>
+    </select>
+
 </mapper>

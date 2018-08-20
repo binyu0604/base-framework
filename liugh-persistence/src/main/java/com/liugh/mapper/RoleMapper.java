@@ -1,7 +1,8 @@
 package com.liugh.mapper;
 
-import com.liugh.entity.Role;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.liugh.entity.Role;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -12,5 +13,5 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @since 2018-05-03
  */
 public interface RoleMapper extends BaseMapper<Role> {
-
+    Role getRoleByRoleName(@Param("roleName") String roleName);
 }

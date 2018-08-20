@@ -12,13 +12,13 @@ import java.util.List;
  */
 public class RoleModel {
     private String roleName;
-    private String roleCode;
+    private Long roleCode;
     private List<String> menuCodes;
 
     public RoleModel() {
     }
 
-    public RoleModel(String roleName, String roleCode, List<String> menuCodes) {
+    public RoleModel(String roleName, Long roleCode, List<String> menuCodes) {
         this.roleName = roleName;
         this.roleCode = roleCode;
         this.menuCodes = menuCodes;
@@ -40,11 +40,11 @@ public class RoleModel {
         this.menuCodes = menuCodes;
     }
 
-    public String getRoleCode() {
+    public Long getRoleCode() {
         return roleCode;
     }
 
-    public void setRoleCode(String roleCode) {
+    public void setRoleCode(Long roleCode) {
         this.roleCode = roleCode;
     }
 

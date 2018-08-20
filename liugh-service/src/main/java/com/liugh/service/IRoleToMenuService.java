@@ -28,7 +28,7 @@ public interface IRoleToMenuService extends IService<RoleToMenu> {
      * @param menuCodes 权限集合
      * @return 结果 true/false
      */
-    boolean saveAll(String roleCode, List<String> menuCodes);
+    boolean saveAll(Long roleCode, List<String> menuCodes);
 
      boolean deleteAllByRoleCode(String roleCode);
 
