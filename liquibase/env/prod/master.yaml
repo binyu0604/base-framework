@@ -4,9 +4,9 @@ databaseChangeLog:
   - include:
       file: 'file:${project.basedir}/../liquibase/changelog/change-1.0.0.yaml'
       relativeToChangelogFile: false
-#  - include:
-#          file: 'file:@basedir@/../liquibase/changelog/diff-1.0.1-SNAPSHOT.yaml'
-#          relativeToChangelogFile: false
+  - include:
+          file: 'file:${project.basedir}/../liquibase/changelog/diff-1.0.1-SNAPSHOT.yaml'
+          relativeToChangelogFile: false
 
 #  - include:
 #          file: 'file:@basedir@/../liquibase/changelog/change-1.0.1-SNAPSHOT.yaml'

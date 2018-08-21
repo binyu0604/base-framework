@@ -1,22 +1,38 @@
 databaseChangeLog:
 - changeSet:
-    id: 1533882978613-1
+    id: 1534841764354-1
     author: jgt (generated)
     changes:
-    - createTable:
-        columns:
-        - column:
-            autoIncrement: true
-            constraints:
-              primaryKey: true
-            name: id
-            remarks: 主键
-            type: INT UNSIGNED
-        - column:
-            constraints:
-              nullable: false
-            name: geo
-            remarks: 地理信息
-            type: GEOMETRY
-        tableName: tb_test
+    - modifyDataType:
+        columnName: role_code
+        newDataType: bigint(19)
+        tableName: tb_role
+    - setColumnRemarks:
+        columnName: role_code
+        remarks: 主键
+        tableName: tb_role
+- changeSet:
+    id: 1534841764354-2
+    author: jgt (generated)
+    changes:
+    - modifyDataType:
+        columnName: role_code
+        newDataType: bigint(19)
+        tableName: tb_user_to_role
+- changeSet:
+    id: 1534841764354-3
+    author: jgt (generated)
+    changes:
+    - modifyDataType:
+        columnName: user_no
+        newDataType: bigint(19)
+        tableName: tb_user
+- changeSet:
+    id: 1534841764354-4
+    author: jgt (generated)
+    changes:
+    - modifyDataType:
+        columnName: user_no
+        newDataType: bigint(19)
+        tableName: tb_user_to_role
 
