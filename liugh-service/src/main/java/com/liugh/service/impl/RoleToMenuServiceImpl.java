@@ -32,11 +32,11 @@ public class RoleToMenuServiceImpl extends ServiceImpl<RoleToMenuMapper, RoleToM
     }
 
     @Override
-    public boolean saveAll(Long roleCode, List<String> menuCodes) {
+    public boolean saveAll(Long roleCode, List<Long> menuCodes) {
         boolean result = true;
         if (!ComUtil.isEmpty(menuCodes)) {
             List<RoleToMenu> modelList = new ArrayList<>();
-            for (String menuCode : menuCodes) {
+            for (Long menuCode : menuCodes) {
                 modelList.add(new RoleToMenu(roleCode, menuCode));
             }
             result = this.insertBatch(modelList);

@@ -41,9 +41,9 @@ public class RoleToMenu extends Model<RoleToMenu> {
      * 菜单代号,规范权限标识
      */
     @TableField("menu_code")
-    private String menuCode;
+    private Long menuCode;
 
-    public RoleToMenu(Long roleCode, String menuCode) {
+    public RoleToMenu(Long roleCode, Long menuCode) {
         this.roleCode=roleCode;
         this.menuCode=menuCode;
     }
