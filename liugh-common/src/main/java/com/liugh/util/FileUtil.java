@@ -1,13 +1,12 @@
 package com.liugh.util;
 
 import com.liugh.base.Constant;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.tools.zip.ZipEntry;
 import org.apache.tools.zip.ZipFile;
 import org.apache.tools.zip.ZipOutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
@@ -1044,15 +1043,15 @@ public class FileUtil {
             if (content != null) content.close();
             if(out != null) out.close();
         }
-        BASE64Encoder encoder = new BASE64Encoder();
-        return encoder.encode(out.toByteArray());
+        // BASE64Encoder encoder = new BASE64Encoder();
+        return Base64.encodeBase64String(out.toByteArray());
     }
 
     public static byte[] base64String2Image(String base64String) throws Exception{
         if(ComUtil.isEmpty(base64String)) return null;
         base64String = base64String.replaceAll("data:image/(jpg|png|jpeg);base64,","");
-        BASE64Decoder decoder = new BASE64Decoder();
-        return decoder.decodeBuffer(base64String);
+        //BASE64Decoder decoder = new BASE64Decoder();
+        return Base64.encodeBase64(base64String.getBytes());
     }
 
 //    public static void main(String[] args) throws Exception {
